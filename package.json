@@ -1,0 +1,47 @@
+{
+  "name": "angular2-ads-library",
+  "version": "0.0.1",
+  "description": "Ads Angular 2 library",
+  "main": "angular2-ads-library-example.js",
+  "private": true,
+  "scripts": {
+    "watch": "tsc -p src -w",
+    "build": "rm -rf lib && tsc -p src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ronsisvalle.francesco@gitlab.com/ronsisvalle.francesco/angular2-ads-library.git"
+  },
+  "author": "ronsisvalle.francesco@gmail.com",
+  "license": "ADS",
+  "bugs": {
+    "url": "https://gitlab.com/ronsisvalle.francesco/angular2-ads-library/issues"
+  },
+  "homepage": "https://gitlab.com/ronsisvalle.francesco/angular2-ads-library/blob/master/README.md",
+  "devDependencies": {
+    "@angular/cli": "1.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@types/node": "~6.0.60",
+    "codelyzer": "~2.0.0",
+    "ts-node": "~2.0.0",
+    "tslint": "~4.5.0",
+    "typedoc": "^0.5.10",
+    "typescript": "~2.2.0"
+  },
+  "dependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "core-js": "^2.4.1",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "debug": true
+  }
+}
