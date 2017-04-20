@@ -1,9 +1,8 @@
 {
-  "name": "angular2-ads-library",
+  "name": "@ronsisvalle/angular2-ads-library",
   "version": "0.0.1",
   "description": "Ads Angular 2 library",
   "main": "angular2-ads-library-example.js",
-  "private": true,
   "scripts": {
     "watch": "tsc -p src -w",
     "build": "rm -rf lib && tsc -p src"
@@ -13,7 +12,7 @@
     "url": "git+https://ronsisvalle.francesco@gitlab.com/ronsisvalle.francesco/angular2-ads-library.git"
   },
   "author": "ronsisvalle.francesco@gmail.com",
-  "license": "ADS",
+  "license": "SEE LICENSE IN README.md",
   "bugs": {
     "url": "https://gitlab.com/ronsisvalle.francesco/angular2-ads-library/issues"
   },
@@ -43,5 +42,12 @@
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
     "debug": true
-  }
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "keywords": [
+    "ADS",
+    "Library"
+  ]
 }

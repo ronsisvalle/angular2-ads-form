@@ -1,1 +1,1 @@
-exports.HelloWorld = require('./lib/HelloWorld').HelloWorld;
+exports.AdsForm = require('./lib/adsFrom').AdsForm;
