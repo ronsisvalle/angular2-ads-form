@@ -1,6 +1,6 @@
 {
   "name": "@ronsisvalle/angular2-ads-library",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Ads Angular 2 library",
   "main": "angular2-ads-library-example.js",
   "scripts": {
