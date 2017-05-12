@@ -1,1 +1,1 @@
-export * from './lib/adsFrom';
+export * from './lib/AdsForm';
