@@ -1,0 +1,26 @@
+{
+  "name": "angular2-ads-form",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://ronsisvalle.francesco@gitlab.com/ronsisvalle.francesco/angular2-ads-library.git"
+  },
+  "author": {
+    "name": "Francesco Ronsisvalle",
+    "email": "Francesco.Ronsisvalle@Assembly.it"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://ronsisvalle.francesco@gitlab.com/ronsisvalle.francesco/angular2-ads-library.git/issues"
+  },
+  "module": "angular2-ads-form.js",
+  "typings": "angular2-ads-form.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AdsForm } from '@ronsisvalle/angular2-ads-library';
+import { AdsFormModule } from 'angular2-ads-form';
 import { AppComponent } from './components/login/app.component.login';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { AppComponent } from './components/login/app.component.login';
   imports: [
     BrowserModule,
     FormsModule,
-    AdsForm,
+    AdsFormModule,
     HttpModule
   ],
   providers: [],

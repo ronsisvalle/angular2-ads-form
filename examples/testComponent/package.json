@@ -43,7 +43,7 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typedoc": "^0.5.10",
-    "@ronsisvalle/angular2-ads-library": "^0.0.1",
+    "angular2-ads-form": "^0.1.0",
     "typescript": "~2.2.0"
   }
 }
