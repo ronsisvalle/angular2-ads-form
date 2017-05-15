@@ -92,7 +92,7 @@ var AdsFormInput = (function () {
 AdsFormInput.decorators = [
     { type: _angular_core.Component, args: [{
                 selector: "ads-form-input",
-                templateUrl: "./template/form-input-template.html"
+                template: '<div class="form-group" [formGroup]="formController"><label for="nome">{{label}}</label> <input type="text" id="{{nome}}" class="form-control" [formControlName]="nome" name="nome"><div *ngIf="eleController.errors && (eleController.dirty || eleController.touched)" class="alert alert-danger"><div [hidden]="!eleController.errors">cazzo</div></div></div>'
             },] },
 ];
 /**

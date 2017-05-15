@@ -4,6 +4,7 @@ var gulp = require('gulp'),
   ngc = require('@angular/compiler-cli/src/main').main,
   rollup = require('gulp-rollup'),
   rename = require('gulp-rename'),
+  embedTemplates = require('gulp-angular-embed-templates');
   del = require('del'),
   runSequence = require('run-sequence'),
   inlineResources = require('./tools/gulp/inline-resources');
@@ -28,6 +29,7 @@ gulp.task('clean:dist', function () {
  */
 gulp.task('copy:source', function () {
   return gulp.src([`${srcFolder}/**/*`, `!${srcFolder}/node_modules`])
+    .pipe(embedTemplates({sourceType:'ts'}))
     .pipe(gulp.dest(tmpFolder));
 });
 
@@ -141,10 +143,10 @@ gulp.task('copy:build', function () {
 /**
  * 8. Copy html from /src to /dist
  */
-gulp.task('copy:html', function () {
-  return gulp.src([`${srcFolder}//**/*.html`])
-    .pipe(gulp.dest(distFolder));
-});
+//gulp.task('copy:html', function () {
+ // return gulp.src([`${srcFolder}/**/*.html`])
+ //   .pipe(gulp.dest(distFolder));
+//});
 
 /**
  * 8. Copy package.json from /src to /dist
@@ -185,7 +187,7 @@ gulp.task('compile', function () {
     'rollup:fesm',
     'rollup:umd',
     'copy:build',
-    'copy:html',
+//    'copy:html',
     'copy:manifest',
     'copy:readme',
     'clean:build',
