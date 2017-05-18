@@ -6,21 +6,21 @@ import { FormElement } from './interface/ads.interface.form.element';
     selector: "ads-form-input",
     templateUrl: "./template/form-input-template.html"
 })
-export class AdsFormInput implements OnInit,FormElement {
-    @Input() nome  : string;
-    @Input() label : string;
+export class AdsFormInput extends AdsForm implements OnInit,FormElement {
+    @Input() nome           : string;
+    @Input() label          : string;
+    @Input() placeholder    : string;
     errors         : Array<string>;    
     formController : FormGroup;
     eleController  : AbstractControl;
     constructor(private parent: AdsForm) {
+        super();
         this.errors = [];
-        
     }
+
     ngOnInit() {
         this.formController = this.parent.formController;
         this.eleController  = this.formController.get(this.nome);
-        console.dir(this.parent.formController);
-        console.dir(this.parent.formValidationRules);
         this.parent.formInputElement.push(this);
     }
   

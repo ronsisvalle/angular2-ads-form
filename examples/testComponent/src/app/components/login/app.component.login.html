@@ -1,6 +1,16 @@
-<h1>
-  {{title}}
-</h1>
-<ads-form name="formUno" [formValidationRules]="formUnoValidationRules">
-  <ads-form-input nome="username" label="Username"></ads-form-input>
-</ads-form>
+<div class="form-validator container col-xs-12">
+  <h1>
+    {{title}}
+  </h1>
+  <div class="form-group">
+    <ads-form name="login" [formValidationRules]="formUnoValidationRules">
+      <ads-form-input nome="username" label="Username" placeholder="Username"></ads-form-input>
+      <ads-form-input nome="password" label="Password" placeholder="Password"></ads-form-input>
+      <div class="col-xs-12">
+        <button type="submit" class="btn btn-md btn-primary btn-block" [disabled]="!formIsValid">Save</button>
+      </div>
+
+    </ads-form>
+  </div>
+
+</div>

@@ -1,18 +1,72 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common'], factory) :
-	(factory((global['angular2-ads-form'] = global['angular2-ads-form'] || {}),global._angular_core,global._angular_common));
-}(this, (function (exports,_angular_core,_angular_common) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ng2-translate'), require('rxjs'), require('rxjs/add/operator/share')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', '@angular/forms', 'ng2-translate', 'rxjs', 'rxjs/add/operator/share'], factory) :
+	(factory((global['angular2-ads-form'] = global['angular2-ads-form'] || {}),global._angular_core,global._angular_common,global._angular_forms,global.ng2Translate,global.rxjs));
+}(this, (function (exports,_angular_core,_angular_common,_angular_forms,ng2Translate,rxjs) { 'use strict';
+
+var AdsFormService = (function () {
+    function AdsFormService() {
+    }
+    /**
+     * @param {?} paramForm
+     * @return {?}
+     */
+    AdsFormService.addForm = function (paramForm) {
+        this.mapAdsForm.set(paramForm.name, paramForm);
+    };
+    /**
+     * @param {?} paramForm
+     * @return {?}
+     */
+    AdsFormService.getFormController = function (paramForm) {
+        var /** @type {?} */ ret;
+        if (paramForm) {
+            var /** @type {?} */ tempForm = this.mapAdsForm.get(paramForm);
+            if (tempForm && tempForm.formController) {
+                ret = tempForm.formIsValid;
+            }
+            else {
+                console.error("Form <" + paramForm + "> is undefined !");
+            }
+        }
+        return ret;
+    };
+    return AdsFormService;
+}());
+AdsFormService.mapAdsForm = new Map();
+AdsFormService.decorators = [
+    { type: _angular_core.Injectable },
+];
+/**
+ * @nocollapse
+ */
+AdsFormService.ctorParameters = function () { return []; };
 
 var AdsForm = (function () {
-    function AdsForm() {
-        this.validationMessages = {
-            'username': {
-                'required': 'Name is required.'
-            }
-        };
+    /**
+     * @param {?=} translate
+     */
+    function AdsForm(translate) {
+        this.formIsValid = new rxjs.BehaviorSubject(false);
         this.formInputElement = [];
+        this.defaultValidationMessages = {
+            'required': 'is required.',
+            'minlength': 'min size is invalid.',
+            'maxlength': 'mia size is invalid.'
+        };
+        if (translate) {
+            this.formInputElement = [];
+            this.translateService = translate;
+        }
+        this.overload_constructor();
     }
+    
+    /**
+     * @return {?}
+     */
+    AdsForm.prototype.overload_constructor = function () {
+        //this.buildForm();
+    };
     
     /**
      * @param {?=} model
@@ -23,26 +77,61 @@ var AdsForm = (function () {
         this.formController = this.formValidationRules[this.name];
         this.formController.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
         this.onValueChanged(model); // (re)set validation messages now
+        AdsFormService.addForm(this);
+    };
+    /**
+     * @return {?}
+     */
+    AdsForm.prototype.checkAllElementIsValid = function () {
+        var /** @type {?} */ ret = false;
+        if (this.formInputElement && this.formInputElement.length > 0) {
+            ret = this.formInputElement.every(function (value) {
+                return value.eleController.valid;
+            });
+        }
+        return ret;
     };
     /**
      * @param {?=} data
      * @return {?}
      */
     AdsForm.prototype.onValueChanged = function (data) {
+        var _this = this;
         if (!this.formController) {
             return;
         }
         var /** @type {?} */ form = this.formController;
-        for (var /** @type {?} */ index in this.formInputElement) {
+        this.formIsValid.next(this.checkAllElementIsValid());
+        var _loop_1 = function (index) {
             // clear previous error message (if any)
-            var /** @type {?} */ formElement = this.formInputElement[index];
+            var /** @type {?} */ formElement = this_1.formInputElement[index];
             var /** @type {?} */ control = form.get(formElement.nome);
             if (control && control.dirty && !control.valid) {
-                var /** @type {?} */ messages = this.validationMessages[formElement.nome];
+                formElement.errors = [];
+                var _loop_2 = function (key) {
+                    var /** @type {?} */ pathMessLbl = "validation.input." + formElement.nome + "." + key;
+                    var /** @type {?} */ strMessError = "";
+                    this_1.translateService.get(pathMessLbl).subscribe(function (res) {
+                        if (pathMessLbl != res) {
+                            strMessError = res;
+                        }
+                        else {
+                            strMessError = formElement.nome + " " + (_this.defaultValidationMessages[key] || "Invalid");
+                            console.error("Error message label is undefined -> " + pathMessLbl);
+                        }
+                    });
+                    if (strMessError) {
+                        formElement.errors.push(strMessError);
+                    }
+                };
                 for (var /** @type {?} */ key in control.errors) {
-                    // control.errors.push(messages[key]);
+                    _loop_2(/** @type {?} */ key);
                 }
             }
+        };
+        var this_1 = this;
+        for (var /** @type {?} */ index in this.formInputElement) {
+            _loop_1(/** @type {?} */ index);
         }
     };
     /**
@@ -63,19 +152,34 @@ AdsForm.decorators = [
 /**
  * @nocollapse
  */
-AdsForm.ctorParameters = function () { return []; };
+AdsForm.ctorParameters = function () { return [
+    { type: ng2Translate.TranslateService, },
+]; };
 AdsForm.propDecorators = {
     'name': [{ type: _angular_core.Input },],
     'formValidationRules': [{ type: _angular_core.Input },],
 };
 
-var AdsFormInput = (function () {
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var AdsFormInput = (function (_super) {
+    __extends(AdsFormInput, _super);
     /**
      * @param {?} parent
      */
     function AdsFormInput(parent) {
-        this.parent = parent;
-        this.errors = [];
+        var _this = _super.call(this) || this;
+        _this.parent = parent;
+        _this.errors = [];
+        return _this;
     }
     /**
      * @return {?}
@@ -83,16 +187,14 @@ var AdsFormInput = (function () {
     AdsFormInput.prototype.ngOnInit = function () {
         this.formController = this.parent.formController;
         this.eleController = this.formController.get(this.nome);
-        console.dir(this.parent.formController);
-        console.dir(this.parent.formValidationRules);
         this.parent.formInputElement.push(this);
     };
     return AdsFormInput;
-}());
+}(AdsForm));
 AdsFormInput.decorators = [
     { type: _angular_core.Component, args: [{
                 selector: "ads-form-input",
-                template: '<div class="form-group" [formGroup]="formController"><label for="nome">{{label}}</label> <input type="text" id="{{nome}}" class="form-control" [formControlName]="nome" name="nome"><div *ngIf="eleController.errors && (eleController.dirty || eleController.touched)" class="alert alert-danger"><div [hidden]="!eleController.errors">cazzo</div></div></div>'
+                template: '<div class="form-group" [formGroup]="formController"><label for="{{nome}}">{{label}}</label> <input type="text" id="{{nome}}" class="form-control" [formControlName]="nome" name="nome" placeholder="{{placeholder}}"><div *ngIf="eleController.errors && (eleController.dirty)" class="alert alert-danger"><div [hidden]="!eleController.errors"><span>{{errors[errors.length -1]}}</span></div></div></div>'
             },] },
 ];
 /**
@@ -104,17 +206,30 @@ AdsFormInput.ctorParameters = function () { return [
 AdsFormInput.propDecorators = {
     'nome': [{ type: _angular_core.Input },],
     'label': [{ type: _angular_core.Input },],
+    'placeholder': [{ type: _angular_core.Input },],
 };
 
 var AdsFormModule = (function () {
     function AdsFormModule() {
     }
     /**
+     * @param {?=} providedLoader
      * @return {?}
      */
-    AdsFormModule.forRoot = function () {
+    AdsFormModule.forRoot = function (providedLoader) {
         return {
             ngModule: AdsFormModule,
+            providers: [AdsFormService]
+        };
+    };
+    /**
+     * @param {?=} providedLoader
+     * @return {?}
+     */
+    AdsFormModule.forChild = function (providedLoader) {
+        return {
+            ngModule: AdsFormModule,
+            providers: [AdsFormService]
         };
     };
     return AdsFormModule;
@@ -122,7 +237,10 @@ var AdsFormModule = (function () {
 AdsFormModule.decorators = [
     { type: _angular_core.NgModule, args: [{
                 imports: [
-                    _angular_common.CommonModule
+                    _angular_common.CommonModule,
+                    _angular_forms.FormsModule,
+                    ng2Translate.TranslateModule,
+                    _angular_forms.ReactiveFormsModule
                 ],
                 declarations: [
                     AdsForm,
@@ -141,6 +259,7 @@ AdsFormModule.ctorParameters = function () { return []; };
 
 exports.AdsFormModule = AdsFormModule;
 exports.AdsForm = AdsForm;
+exports.AdsFormService = AdsFormService;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

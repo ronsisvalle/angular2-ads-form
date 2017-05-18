@@ -1,9 +1,9 @@
 <div class="form-group" [formGroup]="formController">
-    <label for="nome">{{label}}</label>
-    <input type="text" id="{{nome}}" class="form-control" [formControlName]="nome" name="nome" >
-    <div *ngIf="eleController.errors && (eleController.dirty || eleController.touched)" class="alert alert-danger">
-         <div [hidden]="!eleController.errors">
-            cazzo
-        </div>    
+    <label for="{{nome}}">{{label}}</label>
+    <input type="text" id="{{nome}}" class="form-control" [formControlName]="nome" name="nome" placeholder="{{placeholder}}">
+    <div *ngIf="eleController.errors && (eleController.dirty)" class="alert alert-danger">
+        <div [hidden]="!eleController.errors">
+            <span>{{errors[errors.length -1]}}</span>
+        </div>
     </div>
 </div>

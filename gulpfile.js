@@ -1,6 +1,7 @@
 /* eslint-disable */
 var gulp = require('gulp'),
   path = require('path'),
+ // exec = require('child_process').exec;
   ngc = require('@angular/compiler-cli/src/main').main,
   rollup = require('gulp-rollup'),
   rename = require('gulp-rename'),
@@ -164,6 +165,10 @@ gulp.task('copy:readme', function () {
     .pipe(gulp.dest(distFolder));
 });
 
+gulp.task('copy:build-in-exmple', function () {
+  return gulp.src([`${distFolder}/**/*`])
+    .pipe(gulp.dest("./examples/testComponent/node_modules/angular2-ads-form/"));
+});
 /**
  * 10. Delete /.tmp folder
  */
@@ -190,6 +195,7 @@ gulp.task('compile', function () {
 //    'copy:html',
     'copy:manifest',
     'copy:readme',
+    'copy:build-in-exmple',
     'clean:build',
     'clean:tmp',
     function (err) {
