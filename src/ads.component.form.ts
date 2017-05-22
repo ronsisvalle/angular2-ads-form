@@ -6,16 +6,15 @@ import {BehaviorSubject,Subject} from 'rxjs';
 import { AdsFormService} from './service/ads.service.form';
 @Component({
     selector: 'ads-form',
-    template: "<form  [formGroup]='formController' ><ng-content></ng-content></form>",
-    styles: [``]
+    template: "<form  [formGroup]='formController' ><ng-content></ng-content></form>"
 })
 export class AdsForm implements OnInit {
-    @Input() name                   : string;
-    @Input() formValidationRules    : FormGroup;
-    public formController           : FormGroup;
-    public formIsValid              : Subject<boolean> = new BehaviorSubject<boolean>(false);
-    formInputElement                : Array<FormElement> = [];
-    translateService                : TranslateService;
+    @Input()    name                 : string;
+    @Input()    formValidationRules  : FormGroup;
+    public      formController       : FormGroup;
+    public      formIsValid          : Subject<boolean>     = new BehaviorSubject<boolean>(false);
+    private     formInputElement     : Array<FormElement>   = [];
+    private     translateService     : TranslateService;
 
     constructor(translate?: TranslateService) {
         if(translate){
@@ -37,6 +36,12 @@ export class AdsForm implements OnInit {
         this.formController.valueChanges.subscribe(data => this.onValueChanged(data));
         this.onValueChanged(model); // (re)set validation messages now
         AdsFormService.addForm(this);
+    }
+
+    protected addFormInput(paramElement:FormElement): void{
+        if(paramElement){
+            this.formInputElement.push(paramElement);
+        }
     }
 
     private checkAllElementIsValid(): boolean {
@@ -86,4 +91,5 @@ export class AdsForm implements OnInit {
      ngOnInit() {
         this.buildForm();
     }
+
 }

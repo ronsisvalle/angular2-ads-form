@@ -1,0 +1,5 @@
+{
+  "validation.input.username.required": "Nome richiesto",
+  "validation.input.username.minlength": "Lunghezza min 3",
+  "validation.input.username.maxlength": "Lunghezza max 10"
+}

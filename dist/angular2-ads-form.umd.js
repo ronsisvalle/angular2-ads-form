@@ -80,6 +80,15 @@ var AdsForm = (function () {
         AdsFormService.addForm(this);
     };
     /**
+     * @param {?} paramElement
+     * @return {?}
+     */
+    AdsForm.prototype.addFormInput = function (paramElement) {
+        if (paramElement) {
+            this.formInputElement.push(paramElement);
+        }
+    };
+    /**
      * @return {?}
      */
     AdsForm.prototype.checkAllElementIsValid = function () {
@@ -145,8 +154,7 @@ var AdsForm = (function () {
 AdsForm.decorators = [
     { type: _angular_core.Component, args: [{
                 selector: 'ads-form',
-                template: "<form  [formGroup]='formController' ><ng-content></ng-content></form>",
-                styles: [""]
+                template: "<form  [formGroup]='formController' ><ng-content></ng-content></form>"
             },] },
 ];
 /**
@@ -187,14 +195,30 @@ var AdsFormInput = (function (_super) {
     AdsFormInput.prototype.ngOnInit = function () {
         this.formController = this.parent.formController;
         this.eleController = this.formController.get(this.nome);
-        this.parent.formInputElement.push(this);
+        this.required = this.isRequired(this);
+        this.addFormInput(this);
+        //this.parent.formInputElement.push(this);
+        //console.log("REQUIRED "+this.formValidationRules[this.nome].required);
+    };
+    /**
+     * @param {?} paramElement
+     * @return {?}
+     */
+    AdsFormInput.prototype.isRequired = function (paramElement) {
+        var /** @type {?} */ ret = false;
+        if (this.eleController && this.eleController.validator(this.eleController) && this.eleController.validator(this.eleController).required) {
+            ret = true;
+        }
+        console.log("Is Re " + paramElement.nome + "required " + ret);
+        return ret;
     };
     return AdsFormInput;
 }(AdsForm));
 AdsFormInput.decorators = [
     { type: _angular_core.Component, args: [{
                 selector: "ads-form-input",
-                template: '<div class="form-group" [formGroup]="formController"><label for="{{nome}}">{{label}}</label> <input type="text" id="{{nome}}" class="form-control" [formControlName]="nome" name="nome" placeholder="{{placeholder}}"><div *ngIf="eleController.errors && (eleController.dirty)" class="alert alert-danger"><div [hidden]="!eleController.errors"><span>{{errors[errors.length -1]}}</span></div></div></div>'
+                template: "<div class=\"form-group\" [formGroup]=\"formController\"> <label [ngClass]=\"{'required':required}\" for=\"{{nome}}\">{{label}}</label> <input type=\"text\" id=\"{{nome}}\" class=\"form-control\" [formControlName]=\"nome\" name=\"nome\" placeholder=\"{{placeholder}}\"> <div *ngIf=\"eleController.errors && (eleController.dirty)\" class=\"alert alert-danger\"> <div [hidden]=\"!eleController.errors\"> <span>{{errors[errors.length -1]}}</span> </div> </div> </div>",
+                styles: [".required:after {  content: '*';  color: red;  }"]
             },] },
 ];
 /**

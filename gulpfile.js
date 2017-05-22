@@ -1,14 +1,12 @@
 /* eslint-disable */
-var gulp = require('gulp'),
-  path = require('path'),
- // exec = require('child_process').exec;
-  ngc = require('@angular/compiler-cli/src/main').main,
-  rollup = require('gulp-rollup'),
-  rename = require('gulp-rename'),
-  embedTemplates = require('gulp-angular-embed-templates');
-  del = require('del'),
-  runSequence = require('run-sequence'),
-  inlineResources = require('./tools/gulp/inline-resources');
+var gulp            = require('gulp'),
+    path            = require('path'),
+    ngc             = require('@angular/compiler-cli/src/main').main,
+    rollup          = require('gulp-rollup'),
+    rename          = require('gulp-rename'),
+    del             = require('del'),
+    runSequence     = require('run-sequence'),
+    inlineResources = require('./tools/gulp/inline-resources');
 
 const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
@@ -20,7 +18,7 @@ const distFolder = path.join(rootFolder, 'dist');
  * 1. Delete /dist folder
  */
 gulp.task('clean:dist', function () {
-  return deleteFolders([distFolder]);
+  return deleteFolders([distFolder,tmpFolder]);
 });
 
 /**
@@ -30,7 +28,6 @@ gulp.task('clean:dist', function () {
  */
 gulp.task('copy:source', function () {
   return gulp.src([`${srcFolder}/**/*`, `!${srcFolder}/node_modules`])
-    .pipe(embedTemplates({sourceType:'ts'}))
     .pipe(gulp.dest(tmpFolder));
 });
 

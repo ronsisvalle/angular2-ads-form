@@ -10,6 +10,8 @@ export declare class AdsFormInput extends AdsForm implements OnInit, FormElement
     errors: Array<string>;
     formController: FormGroup;
     eleController: AbstractControl;
+    required: boolean;
     constructor(parent: AdsForm);
     ngOnInit(): void;
+    private isRequired(paramElement);
 }

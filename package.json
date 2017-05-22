@@ -67,6 +67,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "gulp-angular-embed-templates": "^2.3.0"
+    "gulp-angular-embed-templates": "^2.3.0",
+    "gulp-inline-ng2-styles": "0.0.1"
   }
 }

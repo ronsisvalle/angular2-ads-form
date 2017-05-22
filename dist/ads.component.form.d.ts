@@ -8,11 +8,12 @@ export declare class AdsForm implements OnInit {
     formValidationRules: FormGroup;
     formController: FormGroup;
     formIsValid: Subject<boolean>;
-    formInputElement: Array<FormElement>;
-    translateService: TranslateService;
+    private formInputElement;
+    private translateService;
     constructor(translate?: TranslateService);
     private overload_constructor();
     private buildForm(model?);
+    protected addFormInput(paramElement: FormElement): void;
     private checkAllElementIsValid();
     private defaultValidationMessages;
     private onValueChanged(data?);
