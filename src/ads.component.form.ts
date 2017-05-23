@@ -38,7 +38,7 @@ export class AdsForm implements OnInit {
         AdsFormService.addForm(this);
     }
 
-    protected addFormInput(paramElement:FormElement): void{
+    public addFormInput(paramElement:FormElement): void{
         if(paramElement){
             this.formInputElement.push(paramElement);
         }

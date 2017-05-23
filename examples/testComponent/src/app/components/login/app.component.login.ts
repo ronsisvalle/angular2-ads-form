@@ -10,15 +10,10 @@ import {AdsFormService} from 'angular2-ads-form';
   providers: [LoginValidation, AdsFormService]
 })
 export class AppComponent {
-  /**
-   * Comment for method ´doSomething´.
-   * @param target  Comment for parameter ´target´.
-   * @returns       Comment for return value.
-   */
-  title                   : string  = "ADS Form Validator";
-  formIsValid             : boolean = false;
 
-  constructor( private formUnoValidationRules: LoginValidation, translate: TranslateService) {
+  formIsValid   : boolean = false;
+
+  constructor( public formUnoValidationRules: LoginValidation, translate: TranslateService) {
     translate.setDefaultLang('en');
   }
 
