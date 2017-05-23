@@ -1,7 +1,7 @@
 # angular2-ads-form
 Reactive form validation and message features library for Angular 2+.
 
-Simple example using ngx-translate: https://plnkr.co/edit/01UjWY3TKfP6pgwXKuEa?p=preview
+Simple example using angular2-ads-form: http://plnkr.co/edit/s1TZKMILlXSTmT0SIfIS?p=preview
 
 **This is the documentation for the 1.x version.
 

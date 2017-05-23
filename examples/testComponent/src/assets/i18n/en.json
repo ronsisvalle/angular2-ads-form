@@ -1,7 +1,7 @@
 {
-  "validation.input.username.required": "Nome richiesto",
-  "validation.input.username.minlength": "Lunghezza min 3",
-  "validation.input.username.maxlength": "Lunghezza max 10",
-  "validation.input.password.required": "Password richiesta",
-  "validation.input.password.minlength": "Lunghezza min 3"
+  "validation.input.username.required": "Name required",
+  "validation.input.username.minlength": "Min length 3",
+  "validation.input.username.maxlength": "Max length 10",
+  "validation.input.password.required": "Password required",
+  "validation.input.password.minlength": "Min length 3"
 }
