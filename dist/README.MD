@@ -1,7 +1,7 @@
 # angular2-ads-form
 Reactive form validation and message features library for Angular 2+.
 
-Simple example using ngx-translate: https://plnkr.co/edit/01UjWY3TKfP6pgwXKuEa?p=preview
+Simple example using angular2-ads-form: http://plnkr.co/edit/s1TZKMILlXSTmT0SIfIS?p=preview
 
 **This is the documentation for the 1.x version.
 
@@ -102,7 +102,7 @@ export class LoginValidation {
 
 ```
 
-#### 3. Define the error message and component:
+#### 2. Define the error message:
 
 Once you've imported the `TranslateModule`, you can put your translations in a json file . The following error message should be stored in `./assets/i18n/en.json`.
 
@@ -116,7 +116,7 @@ Once you've imported the `TranslateModule`, you can put your translations in a j
 }
 ```
 
-Now define the component.
+#### 3. Define component :
 
 ```ts
 import {Component} from '@angular/core';

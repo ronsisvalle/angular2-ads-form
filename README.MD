@@ -102,7 +102,7 @@ export class LoginValidation {
 
 ```
 
-#### 3. Define the error message and component:
+#### 2. Define the error message:
 
 Once you've imported the `TranslateModule`, you can put your translations in a json file . The following error message should be stored in `./assets/i18n/en.json`.
 
@@ -116,7 +116,7 @@ Once you've imported the `TranslateModule`, you can put your translations in a j
 }
 ```
 
-Now define the component.
+#### 3. Define component :
 
 ```ts
 import {Component} from '@angular/core';
