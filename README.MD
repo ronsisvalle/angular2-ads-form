@@ -19,7 +19,7 @@ First you need to install the npm module:
 ```sh
 npm install angular2-ads-form --save
 ```
-if you want traslate message support install[`TranslateModule`](https://www.npmjs.com/package/ng2-translate)
+if you want traslate message support install [`TranslateModule`](https://www.npmjs.com/package/ng2-translate)
 
 ```sh
 npm install ng2-translate --save
@@ -133,7 +133,7 @@ import {AdsFormService} from 'angular2-ads-form';
 export class AppComponent {
   formIsValid             : boolean = false;
 
-  constructor( public formUnoValidationRules: LoginValidation, translate: TranslateService) {
+  constructor( public formValidationRules: LoginValidation, translate: TranslateService) {
     translate.setDefaultLang('en');
   }
 
@@ -149,7 +149,7 @@ export class AppComponent {
 }
 ```
 ```html
- <ads-form name="login" [formValidationRules]="formUnoValidationRules">
+ <ads-form name="login" [formValidationRules]="formValidationRules">
   <ads-form-input nome="username" label="Username" placeholder="Username"></ads-form-input>
   <ads-form-input nome="password" label="Password" placeholder="Password"></ads-form-input>
   <div class="col-xs-12">
