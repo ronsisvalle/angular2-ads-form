@@ -17,7 +17,7 @@ export class AppComponent {
     translate.setDefaultLang('en');
   }
 
-  actionValid(paramData) {
+  actionValid(paramData: boolean) {
     this.formIsValid = paramData;
   }
 
