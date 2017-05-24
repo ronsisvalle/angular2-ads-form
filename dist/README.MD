@@ -1,7 +1,7 @@
 # angular2-ads-form
 Reactive form validation and message features library for Angular 2+.
 
-Simple example using angular2-ads-form: http://plnkr.co/edit/s1TZKMILlXSTmT0SIfIS?p=preview
+Simple example using angular2-ads-form: https://plnkr.co/edit/s1TZKMILlXSTmT0SIfIS?p=preview
 
 **This is the documentation for the 1.x version.
 
@@ -19,11 +19,9 @@ First you need to install the npm module:
 ```sh
 npm install angular2-ads-form --save
 ```
-if you want traslate message support install [`TranslateModule`](https://www.npmjs.com/package/ng2-translate)
 
-```sh
-npm install ng2-translate --save
-```
+**If you use SystemJS** to load your files, you can check the [plunkr example](https://plnkr.co/edit/s1TZKMILlXSTmT0SIfIS?p=preview) for a working setup that uses the cdn [https://unpkg.com/](https://unpkg.com/).
+
 ## Usage
 
 #### 1. Import the `AdsFormModule`:
