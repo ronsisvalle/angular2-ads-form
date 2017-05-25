@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://ronsisvalle.francesco@gitlab.com/ronsisvalle.francesco/angular2-ads-library.git"
+    "url": "https://github.com/ronsisvalle/angular2-ads-form.git"
   },
   "author": {
     "name": "Francesco Ronsisvalle",
@@ -24,7 +24,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://ronsisvalle.francesco@gitlab.com/ronsisvalle.francesco/angular2-ads-library.git/issues"
+    "url": "https://github.com/ronsisvalle/angular2-ads-form/issues"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",
